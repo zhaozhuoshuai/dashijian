@@ -25,12 +25,50 @@
                 <i class="iconfont icon-key"></i>
                 <input type="text" class="input_txt" placeholder="邮箱/手机号">
                 <input type="password" class="input_pass" placeholder="密码">
-                <input type="submit" class="input_sub" value="登 录">
+                <input type="button" class="input_sub" value="登 录">
             </form>
         </div>
 
     </div> 
 
 </body>
+<script src="./js/jquery-1.12.4.min.js"></script>
+<script>
+    // 获取账号输入框
+    var $ipt_txt=$('.input_txt');
+    // 获取密码输入框
+    var $ipt_pass=$('.input_pass');
+    // 给登录按钮注册点击事件
+    $('.input_sub').on('click',function () {
+        // 判断用户输入的是否为空
+        var username=$ipt_txt.val().trim();
+        var password=$ipt_pass.val().trim();
+        if ($ipt_txt===''||$ipt_pass==='') {
+            // 只要满足一个就弹框显示
+            alert('请输入账号或密码');
+            return;
+        };
+        // 提交服务器请求数据
+        $.ajax({
+            type:'post',
+            url:'http://localhost:8000/admin/login',
+            data:{
+                user_name:username,
+                password:password
+            },
+            success:function(res){
+                if (res.code===200) {
+                    location.href='index.html';
+                }else{
+                    alert('用户名或密码错误')
+                }
+            }
+        })
 
+        
+    })
+
+
+
+</script>
 </html>
