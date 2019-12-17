@@ -70,23 +70,21 @@
     </div>
 
 </body>
+<script src="./tools/config配置.js"></script>
+<script src="./tools/user.js"></script>
 <script>
 //1发送请求
-$.ajax({
-    type:'get',
-    url:'http://localhost:8000/admin/userinfo_get',
+user.get_User({
     success:function(res){
-        if (res.code===200) {
-            $.each(res.data,function (k,ele) {
-                if (k==='user_pic') {
-                    $('#avatar').prop('src',ele);
-                    return;
-                }
-                $('#'+k).val(ele);
-            })
-        }  
+        $.each(res.data,function (k,ele) {
+            if (k==='user_pic') {
+                $('#avatar').prop('src',ele);
+                return; 
+            }
+            $('#'+k).val(ele);
+        })
     }
-})
+});
 
 //2提交修改
 $('#btn').on('click',function () {
@@ -102,18 +100,12 @@ $('#btn').on('click',function () {
         return;
     }
     var fd=new FormData($('form')[0]);
-    $.ajax({
-        type:'post',
-        url:'http://localhost:8000/admin/userinfo_edit',
+    user.get_Edit({
         data:fd,
-        contentType:false,
-        processData:false,
-        success:function(res){
-            if (res.code===200) {
-                parent.location.href='login.html';
-            }
+        success:function(){
+            parent.location.href='login.html';
         }
-    })
+    });
 });
 //改变图片
 $('#user_pic').on('change',function () {
