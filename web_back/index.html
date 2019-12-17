@@ -108,6 +108,8 @@
 <script src="./tools/config配置.js"></script>
 <script src="./tools/user.js"></script>
 <script>
+
+    //退出功能
     var $tuichu=$('.tuichu');
     $tuichu.on('click',function () {
         if (confirm('请问确定退出吗?')===false) {
@@ -120,11 +122,14 @@
             fail:function(){
                 alert('网络问题,请稍后再试!')
             }
-        })
-                
-                    
-                    
-    })
-
+        })               
+    });
+    //用户信息功能
+    user.getUser({
+        success:function(res){
+            $('.user_info img,.user_center_link img').prop('src',res.data.user_pic);
+            $('.user_info span').text('欢迎'+res.data.nickname);
+        }
+    });
 </script>
 </html>

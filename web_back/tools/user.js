@@ -31,8 +31,18 @@ logout:function (obj) {
             }
         }
     })
-
-
+},
+    //用户信息请求参数
+getUser:function (obj) {
+    $.ajax({
+        type:'get',
+        url:GETUSER,
+        success:function (res) {
+            if (res.code===200) {
+                obj.success(res);
+            }
+        }
+    })
 }
 
 };
