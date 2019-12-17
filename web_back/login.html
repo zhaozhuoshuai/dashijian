@@ -36,30 +36,41 @@
 <script src="./tools/config配置.js"></script>
 <script src="./tools/user.js"></script>
 <script>
-    // 获取账号输入框
+    // 获取登录页账号输入框赋值给$ipt_txt
     var $ipt_txt=$('.input_txt');
-    // 获取密码输入框
+    // 获取登录页密码输入框赋值给$ipt_pass
     var $ipt_pass=$('.input_pass');
     // 给登录按钮注册点击事件
     $('.input_sub').on('click',function () {
-        // 判断用户输入的是否为空
+        // 获取账号输入框的val内容.trim删除开头和结尾的空格;赋值给username
         var username=$ipt_txt.val().trim();
+        //获取密码输入框的val内容.trim删除开头和结尾的空格;赋值给password
         var password=$ipt_pass.val().trim();
+        // 判断用户输入的内容是否为空
         if ($ipt_txt===''||$ipt_pass==='') {
-            // 只要满足一个就弹框显示
+            // 有一个是空就弹框显示
             alert('请输入账号或密码');
+            // 终止后续代码执行
             return;
         };
         // 提交服务器请求数据
+        // 调用user.js文件的请求接口,传入{}对象
        user.login({
+        // 传入请求参数data
         data:{
+            // 属性名:属性值
            username:username,
+            // 属性名:属性值
            password:password
        },
+       //属性名:执行函数
        success:function(){
+            //跳转页面到index.html页面
             location.href='index.html';
             },
+        //属性名:执行函数
         fail:function(){
+            // 弹框显示提示用户
                 alert('用户名或密码错误')
             }
        });

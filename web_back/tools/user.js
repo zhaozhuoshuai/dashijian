@@ -3,16 +3,21 @@ var user={
     //登录请求参数
 login:function(obj){
     $.ajax({
-        type:'post',
-        url:LOGIN,
-        data:{
+        type:'post',//请求方式
+        url:LOGIN,//url地址
+        data:{//发给服务器的请求参数
+            //请求的参数名:obj传入的对象.属性.属性名
             user_name:obj.data.username,
             password:obj.data.password
         },
+        // 响应回来的数据
         success:function (res) {
+            // 判断是否响应成功code=200
             if (res.code===200) {
+                // 成功则调用形参里面的成功函数
                 obj.success();
             }else{
+                // 不成功则调用形参里面的失败函数
                 obj.fail();
             }
         }
