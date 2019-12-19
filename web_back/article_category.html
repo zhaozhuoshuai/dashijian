@@ -125,8 +125,11 @@
 <script src="./tools/user.js"></script>
 <script>
     // 获取分类
+    //调用接口
     user.search({
+        //属性名:执行函数
         success:function(res){
+            //模板
             var htmlStr=template('fenlei',res);
                 $('tbody').html(htmlStr);
         }
