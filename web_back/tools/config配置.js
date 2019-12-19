@@ -13,4 +13,4 @@ var GETEDIT=BASE_URL+'admin/userinfo_edit';//个人中心编辑信息url
 var SEARCH=BASE_URL+'admin/category_search';//文章分类获取url
 var EDIT=BASE_URL+'admin/category_edit';//文章分类提交编辑url
 var DELETE=BASE_URL+'admin/category_delete';//文章分类删除按钮url
-
+var PUBLISH=BASE_URL+'admin/article_publish';//文章发布url

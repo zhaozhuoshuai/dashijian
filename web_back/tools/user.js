@@ -114,5 +114,21 @@ delete:function (obj) {
             }
         }
     })
+},
+publish:function (obj) {
+    $.ajax({
+        type:'post',
+        url:PUBLISH,
+        data:obj.data,
+        contentType:false,
+        processData:false,
+        success:function (res) {
+            if(res.code===201){
+                obj.success();
+            }else{
+               obj.fail();
+            }
+        }
+    })
 }
 };
